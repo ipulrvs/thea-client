@@ -1,24 +1,131 @@
-.App {
-  text-align: center;
+/*Stack child items vertically*/
+.vbox {
+    display: flex;
+
+    /*Align children vetically*/
+    flex-direction: column;
+    align-content: flex-start;
+
+    overflow: hidden; /*Prevent extending beyond boundaries*/
+}
+/*Stack child items horizontally*/
+.hbox {
+    display: flex;
+
+    /*Align children horizontally*/
+    flex-direction: row;
+    align-content: flex-start;
+
+    /*Wrap items to next line on main-axis*/
+    flex-wrap: wrap;
+
+    overflow: hidden; /*Prevent extending beyond boundaries*/
+}
+/*Stretch item along parent's main-axis*/
+.flex {
+    flex: 1;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/*Stretch item along parent's cross-axis Overrides any cross-* class of parent*/
+.stretch-self {
+    align-self: stretch;
+}
+/*Center item along parent's cross-axis. Overrides any cross-* class of parent*/
+.center-self {
+    align-self: center;
+}
+/*Stack child items to the main-axis start*/
+.main-start {
+    justify-content: flex-start;
+}
+/*Stack child items to the cross-axis start*/
+.cross-start {
+    align-items: flex-start;
+    align-content: flex-start;
+}
+/*Stack child items to the main-axis center*/
+.main-center {
+    justify-content: center;
+}
+/*Stack child items to the cross-axis center*/
+.cross-center {
+    align-items: center;
+    align-content: center;
+}
+/*Stack child items to the main-axis end.*/
+.main-end {
+    justify-content: flex-end;
+}
+/*Stack child items to the cross-axis end.*/
+.cross-end {
+    align-items: flex-end;
+    align-content: flex-end;
+}
+/*Stretch child items along the cross-axis*/
+.cross-stretch {
+    align-items: stretch;
+    align-content: stretch;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+/*Wrap items to next line on main-axis*/
+.wrap {
+    flex-wrap: wrap;
+}
+/*Don't wrap items to next line on main-axis*/
+.nowrap {
+    flex-wrap: nowrap;
 }
 
-.App-intro {
-  font-size: large;
+/*Custom*/
+@media only screen and (min-width : 320px) and (max-width : 640px) {
+    .sidebar {
+        display: none;
+    }
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.MuiDrawer-paper-1, .c1 {
+    width: 256px;
+    border-right: 0px !important;
+    background: #323237 !important;
+}
+
+/*Layout*/
+html, body {
+    overflow: hidden;
+	height: 100%; 
+	padding: 0px;
+	margin: 0px;
+	background: #EEF2F5;
+}
+
+.sidebar {
+	background: #3E4A58;
+	width: 256px;
+}
+
+.topbar {
+	background: #FFFFFF;
+	height: 50px;
+	width: 100%;
+	border-bottom: 1px solid #F1F2F6;
+}
+
+.footer {
+	background: #FFFFFF;
+	height: 50px;
+	width: 100%;
+	border-top: 1px solid #F1F2F6;
+}
+
+.content-fullwidth {
+	overflow: auto;
+}
+
+.content {
+	overflow: auto;
+	padding: 12px 36px;
+}
+
+.window {
+	height: 100%;
 }

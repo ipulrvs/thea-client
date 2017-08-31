@@ -1,19 +1,52 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import './App.css';
+import blue from 'material-ui/colors/blue';
 
+import Topbar from './components/Topbar';
+import Sidebar from './components/Sidebar';
+import Frontpage from './components/Frontpage';
+
+/* begin Redux Configuration */
+import connect from 'redux-connect-decorator'
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import AppRedux from './reducers'
+let store = createStore(AppRedux, applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+/* end Redux Configuration */
+
+// console.log(store.dispatch({type: "SAVE_DATA", data: "SOME OBJECT"}))
+
+const defaultTheme = createMuiTheme({
+  palette: {
+    primary: blue
+  },
+  overrides: {
+    MuiAppBar: {
+      root: {
+        height: 52
+      }
+    }
+  }
+});
 class App extends Component {
+  constructor(props){
+    super(props)
+  }
   render() {
+    console.log("Connected to Redux", this)
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <MuiThemeProvider theme={defaultTheme}>
+      <div className="App hbox">
+        <Sidebar />
+        <div className="main flex">
+          <div className="window vbox">
+            <Topbar />
+            <Frontpage />
+          </div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
+    </MuiThemeProvider>
     );
   }
 }
