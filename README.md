@@ -11,10 +11,103 @@ Ready Client Stack for Fast Development built by React and Material UI
 ## Getting Started
 
 ## Rebuild same repository Reminder
-1. Install started react enviroment with `npm install -g create-react-app`
-   - `create-react-app appname` for run generator
-   - `npm start` for run application 
-   - `npm build` for buld application
+You can use `yarn` instead `npm` for package installer.
+1. Install started react enviroment
+   - install webpack in global `npm install -g webpack`
+   - install babel in global `npm install -g babel`
+   - install babel cli in global `npm install -g babel-cli`
+   - create folder container env `mkdir app-webpack`
+   - open folder env `cd app-webpack`
+   - initialize package.json with `npm init`
+   - install webpack `npm install webpack --save`
+   - install webpack-dev-server `npm install webpack-dev-server --save`
+   - install react `npm install react --save`
+   - install react-dom `npm install react-dom --save`
+   - install babel-plugins `npm install babel-core babel-loader babel-preset-react babel-preset-es2015 --save`
+   - create index.html app.js app.jsx and webpack config `touch index.html App.jsx app.js webpack.config.js`
+   - add or edit **index.html** and replace with
+        ```
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>React Env</title>
+        </head>
+        <body>
+            <div id="app"></div>
+            <script src="app.js"></script>
+        </body>
+        </html>
+        ```
+   - add or edit **App.jsx** and replace with
+        ```
+        import React from 'react';
+        
+        class App extends React.Component {
+           render() {
+              return (
+                 <div>
+                    Hello React Script !!!
+                 </div>
+              );
+           }
+        }
+        
+        export default App;
+        ```
+    - add or edit **app.js** and replace with
+        ```
+        import React from 'react';
+        import ReactDOM from 'react-dom';
+        import App from './App.jsx';
+        
+        ReactDOM.render(<App />, document.getElementById('app'));
+        ```
+    - add or edit **webpack.config.js** and replace with
+        ```
+        const path = require('path');
+
+        var config = {
+        	entry: './app.js',
+        	output: {
+                path: path.join(__dirname, "build/"),
+                publicPath: "/",
+                filename: "app.js"
+            },
+        	devServer: {
+        		inline: true,
+        		port: 8080
+        	},
+          module: {
+        		loaders: [
+        			{
+        				test: /\.jsx?$/,
+        				exclude: /node_modules/,
+        				loader: 'babel-loader',
+        					query: {
+        						presets: ['es2015', 'react']
+        					}
+        			}
+        		]
+        	}
+        }
+        
+        module.exports = config;
+        ```
+    - open **package.json** and replace this line
+        ```
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1"
+        }, 
+        ```
+        with this 
+        ```
+        "scripts": {
+            "start": "webpack-dev-server --hot",
+            "build": "webpack"
+        }, 
+        ```
+    - after all config has complete run with `npm start`
 2. Integrate material-ui framework
    - install material-ui `npm install material-ui --save`
    - import and add MuiThemeProvider see [Usage](http://www.material-ui.com/#/get-started/usage) for detail
