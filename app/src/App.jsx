@@ -4,7 +4,13 @@ import blue from 'material-ui/colors/blue';
 
 import Topbar from './components/Topbar';
 import Sidebar from './components/Sidebar';
-import Frontpage from './components/Frontpage';
+import Routes from './config/Routes';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 const defaultTheme = createMuiTheme({
   palette: {
@@ -35,7 +41,7 @@ class App extends Component {
         <div className="main flex">
           <div className="window vbox">
             <Topbar />
-            <Frontpage />
+            <Routes />
           </div>
         </div>
       </div>
