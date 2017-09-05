@@ -24,7 +24,8 @@ You can use `yarn` instead `npm` for package installer.
    - install react `npm install react --save`
    - install react-dom `npm install react-dom --save`
    - install babel-plugins `npm install babel-core babel-loader babel-preset-react babel-preset-es2015 --save`
-   - create index.html app.js app.jsx and webpack config `touch index.html App.jsx app.js webpack.config.js`
+   - create script directory `mkdir src`
+   - create index.html index.js index.css src/App.jsx and webpack config `touch index.html index.js webpack.config.js src/App.jsx`
    - add or edit **index.html** and replace with
         ```
         <!DOCTYPE html>
@@ -35,11 +36,11 @@ You can use `yarn` instead `npm` for package installer.
         </head>
         <body>
             <div id="app"></div>
-            <script src="app.js"></script>
+            <script src="index.js"></script>
         </body>
         </html>
         ```
-   - add or edit **App.jsx** and replace with
+   - add or edit **src/App.jsx** and replace with
         ```
         import React from 'react';
         
@@ -55,7 +56,7 @@ You can use `yarn` instead `npm` for package installer.
         
         export default App;
         ```
-    - add or edit **app.js** and replace with
+    - add or edit **index.js** and replace with
         ```
         import React from 'react';
         import ReactDOM from 'react-dom';
@@ -68,11 +69,11 @@ You can use `yarn` instead `npm` for package installer.
         const path = require('path');
 
         var config = {
-        	entry: './app.js',
+        	entry: './index.js',
         	output: {
                 path: path.join(__dirname, "build/"),
                 publicPath: "/",
-                filename: "app.js"
+                filename: "index.js"
             },
         	devServer: {
         		inline: true,
