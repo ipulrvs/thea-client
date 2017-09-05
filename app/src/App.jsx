@@ -28,7 +28,6 @@ class App extends Component {
     super(props)
   }
   render() {
-    console.log("Connected to Redux", this)
     return (
       <MuiThemeProvider theme={defaultTheme}>
       <div className="App hbox">

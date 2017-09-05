@@ -10,6 +10,4 @@ import AppRedux from './src/reducers';
 let store = createStore(AppRedux, applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 /* end Redux Configuration */
 
-// console.log(store.dispatch({type: "SAVE_DATA", data: "SOME OBJECT"}))
-
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('app'));
