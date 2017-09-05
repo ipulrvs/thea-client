@@ -11,8 +11,9 @@ Ready Client Stack for Fast Development built by React and Material UI
 ## Getting Started
 
 ## Rebuild same repository Reminder
-You can use `yarn` instead `npm` for package installer.
+You can use `yarn add` instead `npm install` for package installer.
 1. Install started react enviroment
+   - [Optiona] install yarn `npm install -g yarn` add global path to yarn in your system Windows/Linux
    - install webpack in global `npm install -g webpack`
    - install babel in global `npm install -g babel`
    - install babel cli in global `npm install -g babel-cli`
@@ -60,7 +61,7 @@ You can use `yarn` instead `npm` for package installer.
         ```
         import React from 'react';
         import ReactDOM from 'react-dom';
-        import App from './App.jsx';
+        import App from './src/App.jsx';
         
         ReactDOM.render(<App />, document.getElementById('app'));
         ```
@@ -79,7 +80,7 @@ You can use `yarn` instead `npm` for package installer.
         		inline: true,
         		port: 8080
         	},
-          module: {
+            module: {
         		loaders: [
         			{
         				test: /\.jsx?$/,
@@ -114,10 +115,10 @@ You can use `yarn` instead `npm` for package installer.
    - import and add MuiThemeProvider see [Usage](http://www.material-ui.com/#/get-started/usage) for detail
    - install material-ui `npm install material-ui-icons --save`
 3. Integrate redux framework
+   - install babel-plugin-transform-decorators-legacy `npm install babel-plugin-transform-decorators-legacy --save`
+   - install babel-plugin-transform-decorators `npm install babel-plugin-transform-decorators --save`
    - install redux `npm install redux --save`
    - install react-redux `npm install react-redux --save`
    - install react-thunk `npm install react-thunk --save`
-   - install babel-plugin-transform-decorators-legacy `npm install babel-plugin-transform-decorators-legacy --save`
-   - install babel-plugin-transform-decorators `npm install babel-plugin-transform-decorators --save`
    - install redux-decorator `npm install redux-connect-decorator --save`
    - install chrome ext react and redux dev tools
