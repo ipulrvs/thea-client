@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 
-import Topbar from './components/Topbar';
-import Sidebar from './components/Sidebar';
-import Routes from './config/Routes';
+import Topbar from './components/Topbar.jsx';
+import Sidebar from './components/Sidebar.jsx';
+import Routes from './config/Routes.jsx';
 
 import {
   BrowserRouter as Router,
@@ -25,10 +25,6 @@ const defaultTheme = createMuiTheme({
   }
 });
 
-import connect from 'redux-connect-decorator'
-@connect(store => ({ 
-   switch: store.switch
-}))
 class App extends Component {
   constructor(props){
     super(props)

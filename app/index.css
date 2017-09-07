@@ -77,10 +77,23 @@
 }
 
 /*Custom*/
-@media only screen and (min-width : 320px) and (max-width : 640px) {
+@media only screen and (min-width : 240px) and (max-width : 640px) {
     .sidebar {
         display: none;
     }
+}
+
+.avatar {
+    border-top: 1px solid #2196F3;
+    background-color: #2196F3 !important;
+}
+
+.avatarText h3{
+    color: #FFFFFF;
+}
+
+.avatarText p{
+    color: lightgrey;
 }
 
 .MuiDrawer-paper-1, .c1 {
@@ -123,7 +136,10 @@ html, body {
 
 .content {
 	overflow: auto;
-	padding: 12px 36px;
+}
+
+.content div {
+    padding: 12px 36px;
 }
 
 .window {

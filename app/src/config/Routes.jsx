@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Frontpage from './../components/Frontpage';
-import Topbar from './../components/Topbar';
-import Sidebar from './../components/Sidebar';
+
+import Frontpage from './../components/Frontpage.jsx';
 
 import {
   HashRouter as Router,
@@ -13,7 +12,7 @@ class Routes extends Component {
   render() {
     return (
       <Router>
-				<div>
+				<div className="content flex">
 					<Route exact path="/" component={Frontpage}/>
 				</div>
 			</Router>

@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux'
 import topbarReducer from './topbarReducer'
+import sidebarReducer from './sidebarReducer'
+import userReducer from './userReducer'
 
 const trigger = combineReducers({
-	topbar: topbarReducer
+	topbar: topbarReducer,
+	sidebar: sidebarReducer
 })
 
 const AppRedux = combineReducers({
-	switch: topbarReducer
+	switch: trigger,
+	user: userReducer
 })
 
 export default AppRedux
