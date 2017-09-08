@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
-class Frontpage extends Component {
+class PageAbout extends Component {
   render() {
     return (
-      <div style={{background: "red"}}>
+      <div style={{background: "blue"}}>
         <h1>
+          IT'S ALL ABOUT
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo veniam voluptatum unde, corporis illo sapiente dignissimos vero a numquam molestias nemo est, consectetur recusandae sint quidem similique, modi, expedita distinctio.
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet ipsa dignissimos quod harum aperiam soluta temporibus vel! Perferendis, iste aliquid nostrum, consequatur dolore, excepturi perspiciatis non asperiores modi natus deserunt?
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maiores nulla ratione suscipit molestiae. Voluptatibus assumenda sit odit laboriosam dicta facere totam, minus necessitatibus velit vitae ipsum. Facilis, repellat temporibus.
@@ -19,4 +20,4 @@ class Frontpage extends Component {
   }
 }
 
-export default Frontpage;
+export default PageAbout;

@@ -98,11 +98,11 @@
 } */
 
 .sidebarItem:hover {
-     background: #2196F3 !important;
+     background: #1F8EE5 !important;
 }
 
 .sidebarItemActive {
-     background: #1F8EE5 !important;
+     background: #2196F3 !important;
 }
 
 .avatar {

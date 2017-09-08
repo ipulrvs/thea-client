@@ -1,6 +1,9 @@
+const SIDEBAR_SELECT_MENU = "SIDEBAR_SELECT_MENU";
+
 function sidebarReducer(state = {
 	mainmenus: [
 		{
+			url: '/',
 			name: "Setup",
 			active: true,
 			submenus: [
@@ -13,6 +16,7 @@ function sidebarReducer(state = {
 			]
 		},
 		{
+			url: '/#/about',
 			name: "Module Name",
 			active: false,
 			submenus: [
@@ -27,9 +31,20 @@ function sidebarReducer(state = {
 	]
 }, action){
 	switch(action.type){
-		case "":
+		case SIDEBAR_SELECT_MENU:
+			let param = action.param
+			let menuIndex = param
+			let out = state.mainmenus.map((item, index)=> {
+				if(menuIndex == index){
+					item.active = true
+				} else {
+					item.active = false
+				}
+			})
+			console.log("STATE SIDEBAR", out)
 			return {
-				...state
+				...state,
+				out
 			}
 		default: 
 			return {

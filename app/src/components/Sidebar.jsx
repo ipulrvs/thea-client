@@ -20,13 +20,19 @@ class Sidebar extends Component {
     super(props)
   }
 
-  renderMainMenus(data){
-    let datas = data
+  selectMenu(param){
+    this.props.dispatch({type: "SIDEBAR_SELECT_MENU", param: param})
+    console.log(this, "WHAT AM I")
+  }
+
+  renderMainMenus(global){
+    const _this = global
+    let datas = _this.props.mainmenus
     let view = []
     datas.map(function(dataItem, index){
       if(dataItem.active){
         view.push(
-          <ListItem button key={index} className="sidebarItemActive">
+          <ListItem button key={index} className="sidebarItemActive" onClick={_this.selectMenu.bind(_this, index)}>
             <Icon className="sidebarIcon">add_circle</Icon>
             <ListItemText className="sidebarText" primary={dataItem.name} />
           </ListItem>
@@ -34,7 +40,7 @@ class Sidebar extends Component {
       }
       if(!dataItem.active){
         view.push(
-          <ListItem button key={index} className="sidebarItem">
+          <ListItem button key={index} className="sidebarItem" onClick={_this.selectMenu.bind(_this, index)}>
             <Icon className="sidebarIcon">add_circle</Icon>
             <ListItemText className="sidebarText" primary={dataItem.name} />
           </ListItem>
@@ -45,8 +51,9 @@ class Sidebar extends Component {
   }
 
   render() {
-    let mainmenus = this.renderMainMenus(this.props.mainmenus)
-    console.log(mainmenus)
+    let mainmenus = this.renderMainMenus(this)
+    console.log(this, "SIDEBAR STATE")
+    window.hahahah = this
     return (
       <div className="sidebar">
         <Drawer type="permanent" open={false}>
