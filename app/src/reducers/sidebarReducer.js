@@ -2,7 +2,7 @@ function sidebarReducer(state = {
 	mainmenus: [
 		{
 			name: "Setup",
-			selected: false,
+			active: true,
 			submenus: [
 				{
 					name: "First Setup"
@@ -14,7 +14,7 @@ function sidebarReducer(state = {
 		},
 		{
 			name: "Module Name",
-			selected: false,
+			active: false,
 			submenus: [
 				{
 					name: "First Module"

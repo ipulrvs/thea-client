@@ -83,6 +83,28 @@
     }
 }
 
+.sidebarIcon {
+    color: #FFFFFF;
+    font-size: 21px;
+}
+
+.sidebarText h3 {
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+/* .sidebarItem {
+    border-left: 4px solid #2196F3 !important;
+} */
+
+.sidebarItem:hover {
+     background: #2196F3 !important;
+}
+
+.sidebarItemActive {
+     background: #1F8EE5 !important;
+}
+
 .avatar {
     border-top: 1px solid #2196F3;
     background-color: #2196F3 !important;

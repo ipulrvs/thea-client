@@ -19,8 +19,34 @@ class Sidebar extends Component {
   constructor(props){
     super(props)
   }
+
+  renderMainMenus(data){
+    let datas = data
+    let view = []
+    datas.map(function(dataItem, index){
+      if(dataItem.active){
+        view.push(
+          <ListItem button key={index} className="sidebarItemActive">
+            <Icon className="sidebarIcon">add_circle</Icon>
+            <ListItemText className="sidebarText" primary={dataItem.name} />
+          </ListItem>
+        )
+      }
+      if(!dataItem.active){
+        view.push(
+          <ListItem button key={index} className="sidebarItem">
+            <Icon className="sidebarIcon">add_circle</Icon>
+            <ListItemText className="sidebarText" primary={dataItem.name} />
+          </ListItem>
+        )
+      }
+    })
+    return view
+  }
+
   render() {
-    console.log(this, "LALALALAL")
+    let mainmenus = this.renderMainMenus(this.props.mainmenus)
+    console.log(mainmenus)
     return (
       <div className="sidebar">
         <Drawer type="permanent" open={false}>
@@ -39,14 +65,7 @@ class Sidebar extends Component {
               <ListItemText primary={this.props.user.fullName} secondary={this.props.user.userRole} className="avatarText"/>
             </ListItem>
             <Divider />
-            <ListItem button>
-              <Icon>add_circle</Icon>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <ListItem button>
-              <Icon>add_circle</Icon>
-              <ListItemText primary="Inbox" />
-            </ListItem>
+            {mainmenus}
           </List>
         </Drawer>
       </div>
