@@ -8,13 +8,11 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
-const history = createBrowserHistory()
 
 class Routes extends Component {
   render() {
     return (
-      <Router history={history}>
+      <Router>
 				<div className="content flex">
 					<Route exact path="/" component={PageFront}/>
           <Route exact path="/about" component={PageAbout}/>
