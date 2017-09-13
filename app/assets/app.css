@@ -1,0 +1,38 @@
+html, body {
+	height: 100%; 
+	padding: 0px;
+	margin: 0px;
+	background: #FAFAFA;
+}
+
+.sidebar {
+	background: #3E4A58;
+	width: 256px;
+}
+
+.topbar {
+	background: #FFFFFF;
+	height: 50px;
+	width: 100%;
+	border-bottom: 1px solid #F1F2F6;
+}
+
+.footer {
+	background: #FFFFFF;
+	height: 50px;
+	width: 100%;
+	border-top: 1px solid #F1F2F6;
+}
+
+.content-fullwidth {
+	overflow: auto;
+}
+
+.content {
+	overflow: auto;
+	padding: 12px 36px;
+}
+
+.window {
+	height: 100%;
+}

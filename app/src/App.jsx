@@ -1,49 +1,19 @@
-import React, { Component } from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue';
+import React from 'react'
+import Routes from './config/Routes.jsx'
 
-import Topbar from './components/Topbar.jsx';
-import Sidebar from './components/Sidebar.jsx';
-import Routes from './config/Routes.jsx';
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-
-const defaultTheme = createMuiTheme({
-  palette: {
-    primary: blue
-  },
-  overrides: {
-    MuiAppBar: {
-      root: {
-        height: 52
-      }
-    }
-  }
-});
-
-class App extends Component {
-  constructor(props){
-    super(props)
-  }
+import connect from 'redux-connect-decorator'
+@connect(store => ({ 
+   global: store.global
+}))
+class App extends React.Component {
   render() {
+    window.hahahaAPP = this
     return (
-      <MuiThemeProvider theme={defaultTheme}>
-      <div className="App hbox">
-        <Sidebar />
-        <div className="main flex">
-          <div className="window vbox">
-            <Topbar />
-            <Routes />
-          </div>
-        </div>
+      <div className="hbox">
+        <Routes />
       </div>
-    </MuiThemeProvider>
     );
   }
 }
 
-export default App;
+export default App

@@ -3,15 +3,15 @@ const path = require('path');
 var config = {
 	entry: './index.js',
 	output: {
-      path: path.join(__dirname, "build/"),
-			publicPath: "/",
-			filename: "index.js"
+		path: path.join(__dirname, "build/"),
+		publicPath: "/",
+		filename: "index.js"
   },
 	devServer: {
 		inline: true,
 		port: 5000
 	},
-  module: {
+    module: {
 		loaders: [
 			{
 				test: /\.jsx?$/,

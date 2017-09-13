@@ -34,6 +34,7 @@
 .center-self {
     align-self: center;
 }
+
 /*Stack child items to the main-axis start*/
 .main-start {
     justify-content: flex-start;
@@ -74,96 +75,4 @@
 /*Don't wrap items to next line on main-axis*/
 .nowrap {
     flex-wrap: nowrap;
-}
-
-/*Custom*/
-@media only screen and (min-width : 240px) and (max-width : 640px) {
-    .sidebar {
-        display: none;
-    }
-}
-
-.sidebarIcon {
-    color: #FFFFFF;
-    font-size: 21px;
-}
-
-.sidebarText h3 {
-    color: #FFFFFF;
-    font-size: 14px;
-}
-
-/* .sidebarItem {
-    border-left: 4px solid #2196F3 !important;
-} */
-
-.sidebarItem:hover {
-     background: #1F8EE5 !important;
-}
-
-.sidebarItemActive {
-     background: #2196F3 !important;
-}
-
-.avatar {
-    border-top: 1px solid #2196F3;
-    background-color: #2196F3 !important;
-}
-
-.avatarText h3{
-    color: #FFFFFF;
-}
-
-.avatarText p{
-    color: lightgrey;
-}
-
-.MuiDrawer-paper-1, .c1 {
-    width: 256px;
-    border-right: 0px !important;
-    background: #323237 !important;
-}
-
-/*Layout*/
-html, body {
-    overflow: hidden;
-	height: 100%; 
-	padding: 0px;
-	margin: 0px;
-	background: #EEF2F5;
-}
-
-.sidebar {
-	background: #3E4A58;
-	width: 256px;
-}
-
-.topbar {
-	background: #FFFFFF;
-	height: 50px;
-	width: 100%;
-	border-bottom: 1px solid #F1F2F6;
-}
-
-.footer {
-	background: #FFFFFF;
-	height: 50px;
-	width: 100%;
-	border-top: 1px solid #F1F2F6;
-}
-
-.content-fullwidth {
-	overflow: auto;
-}
-
-.content {
-	overflow: auto;
-}
-
-.content div {
-    padding: 12px 36px;
-}
-
-.window {
-	height: 100%;
 }

@@ -1,5 +1,5 @@
-function topbarReducer(state = {
-	sidebar: false
+function GlobalReducer(state = {
+	initialize: false
 }, action){
 	switch(action.type){
 		case "":
@@ -13,4 +13,4 @@ function topbarReducer(state = {
 	}
 }
 
-export default topbarReducer
+export default GlobalReducer

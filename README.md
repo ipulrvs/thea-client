@@ -13,7 +13,7 @@ Ready Client Stack for Fast Development built by React and Material UI
 ## Rebuild same repository Reminder
 You can use `yarn add` instead `npm install` for package installer.
 1. Install started react enviroment
-   - [Optiona] install yarn `npm install -g yarn` add global path to yarn in your system Windows/Linux
+   - [Optional] install yarn `npm install -g yarn` add global path to yarn in your system Windows/Linux
    - install webpack in global `npm install -g webpack`
    - install babel in global `npm install -g babel`
    - install babel cli in global `npm install -g babel-cli`
