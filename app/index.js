@@ -12,7 +12,12 @@ let store = createStore(Reducers, applyMiddleware(thunk), window.__REDUX_DEVTOOL
 /* end Redux Configuration */
 
 /* load Theme Configuration */
-var Theme = createMuiTheme({})
+import primary from 'material-ui/colors/red';
+var Theme = createMuiTheme({
+	palette: {
+		primary: primary
+	}
+})
 /* end Theme Configuration */
 
 ReactDOM.render(

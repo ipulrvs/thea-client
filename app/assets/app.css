@@ -1,3 +1,4 @@
+/* begin Main Layout */
 html, body {
 	height: 100%; 
 	padding: 0px;
@@ -6,7 +7,7 @@ html, body {
 }
 
 .sidebar {
-	background: #3E4A58;
+	background: #252D30;
 	width: 256px;
 }
 
@@ -14,7 +15,6 @@ html, body {
 	background: #FFFFFF;
 	height: 50px;
 	width: 100%;
-	border-bottom: 1px solid #F1F2F6;
 }
 
 .footer {
@@ -36,3 +36,110 @@ html, body {
 .window {
 	height: 100%;
 }
+/* end Main Layout */
+
+/* begin Theme Material-UI */
+/*
+	Base Color
+	.sidebar bg 252D30
+	.sidebar menu icon / hover F44336
+	.sidebar 313C40
+	.sidebar text FAFAFA
+	.sidebar active E53F33
+*/
+.topbarMain > div {
+	min-height: 50px !important;
+}
+
+.topbarTitle {
+	flex: 1;
+	font-size: 16px !important;
+}
+
+.sidebar > div {
+	width: 256px;
+	border-right: 0px !important;
+	background: #252D30;
+}
+
+.sidebar .content {
+	padding: 0px !important;
+}
+
+.sidebarMenu > div {
+	color: #FAFAFA;
+}
+
+.sidebarMenu > .menu {
+	background: #313C40;
+}
+
+.sidebarMenu .menu > .material-icons {
+	color: #F44336 !important;
+}
+
+.sidebarMenu .menu > div {
+	padding: 0px !important;
+}
+
+.sidebarMenu .menu > div > h3 {
+	color: #FAFAFA;
+}
+
+.sidebarMenu > .menu:hover {
+	background: #F44336;;
+}
+
+.sidebarMenu .menu:hover > .material-icons {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu > .menu.active {
+	background: #E53F33 !important;
+}
+
+.sidebarMenu .menu.active {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu .menu.active >.material-icons {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu .submenu {
+	background: #313C40;
+}
+
+.sidebarMenu .submenu .material-icons {
+	color: #F44336 !important;
+}
+
+.sidebarMenu .submenu > div {
+	padding: 0px !important;
+}
+
+.sidebarMenu .submenu > div > h3 {
+	color: #FAFAFA;
+}
+
+.sidebarMenu > .submenu:hover {
+	background: #F44336;;
+}
+
+.sidebarMenu .submenu:hover > .material-icons {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu > .submenu.active {
+	background: #E53F33 !important;
+}
+
+.sidebarMenu .submenu.active {
+	color: #FAFAFA !important;
+}
+
+.sidebarMenu .submenu.active >.material-icons {
+	color: #FAFAFA !important;
+}
+
+/* end Theme Material-UI */
