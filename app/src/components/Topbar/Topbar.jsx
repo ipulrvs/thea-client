@@ -13,9 +13,9 @@ class Topbar extends React.Component {
       <div className="topbar">
 				<AppBar position="static" className="topbarMain">
           <Toolbar>
-            <IconButton color="contrast" aria-label="Menu">
+            {/* <IconButton color="contrast" aria-label="Menu">
               <Icon>menu_icon</Icon>
-            </IconButton>
+            </IconButton> */}
             <Typography type="title" color="inherit" className="topbarTitle">
               
             </Typography>

@@ -1,5 +1,6 @@
 function GlobalReducer(state = {
-	initialize: false
+	initialize: false,
+	moduleSwitch: false
 }, action){
 	switch(action.type){
 		case "":

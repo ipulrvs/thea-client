@@ -42,13 +42,18 @@ html, body {
 /*
 	Base Color
 	.sidebar bg 252D30
-	.sidebar menu icon / hover F44336
-	.sidebar 313C40
+	.sidebar menu icon & hover F44336
+	.sidebar menu bg 313C40
 	.sidebar text FAFAFA
 	.sidebar active E53F33
 */
 .topbarMain > div {
 	min-height: 50px !important;
+}
+
+.topbarMainSidebar > div {
+	min-height: 50px !important;
+	padding-left: 0px !important;
 }
 
 .topbarTitle {

@@ -7,7 +7,7 @@ import App from './src/App.jsx'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import Reducers from './src/config/Reducers.jsx'
+import Reducers from './src/config/Reducers'
 let store = createStore(Reducers, applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 /* end Redux Configuration */
 

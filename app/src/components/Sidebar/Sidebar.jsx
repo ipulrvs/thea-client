@@ -11,15 +11,97 @@ import ListSubheader from 'material-ui/List/ListSubheader';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
 
+import SidebarAction from './Sidebar.action'
+import connect from 'redux-connect-decorator'
+@connect(store => ({ 
+  global: store.global,
+  sidebar: store.sidebar
+}))
 class Sidebar extends React.Component {
+  componentDidMount(){
+    this.props.dispatch({type: SidebarAction.initialize})
+  }
+
+  handleSelectMenu(param){
+    const _this = param._this
+    _this.props.dispatch({type: SidebarAction.select_menu, param: param})
+  }
+
+  viewMenuList(store, _this){
+    const modules = store.menus
+    const viewList = []
+    if(modules && modules.length > 0){
+      modules.map(function (modules, modulesIndex){
+        const menus = modules.menus
+        const viewMenuList = []
+        if(menus && menus.length > 0){
+          menus.map(function(menu, menuIndex){
+            const submenus = menu.submenus
+            const viewSubMenuList = []
+            if(submenus && submenus.length > 0){
+              submenus.map(function(submenu, submenuIndex){
+                viewSubMenuList.push(
+                  <ListItem button className={submenu.active ? "submenu active" : "submenu"} key={submenuIndex} 
+                  onClick={_this.handleSelectMenu.bind(this, {_this: _this, isMenu: false, moduleIndex: modulesIndex, menuIndex: menuIndex, submenuIndex: submenuIndex})}>
+                    <ListItemIcon>
+                      <Icon>chevron_right</Icon>
+                    </ListItemIcon>
+                    <ListItemText inset primary={submenu.name} />
+                  </ListItem>
+                )
+              })
+            }
+            if(submenus && submenus.length > 0){
+              viewMenuList.push(
+                <ListItem button className={menu.active ? "menu active" : "menu"} key={menuIndex} 
+                onClick={_this.handleSelectMenu.bind(this, {_this: _this, isMenu: true, moduleIndex: modulesIndex, menuIndex: menuIndex})}>
+                  <ListItemIcon>
+                    <Icon>more_vert</Icon>
+                  </ListItemIcon>
+                  <ListItemText inset primary={menu.name} />
+                  {menu.openSub ? <Icon>arrow_drop_down</Icon> : <Icon>keyboard_arrow_left</Icon>}
+                </ListItem>,
+                <Collapse in={menu.openSub} transitionDuration="auto" unmountOnExit key={menuIndex+"_child"}>
+                  {viewSubMenuList}
+                </Collapse>
+              )
+            } 
+            if(!submenus) {
+              viewMenuList.push(
+                <ListItem button className={menu.active ? "menu active" : "menu"} key={menuIndex} 
+                onClick={_this.handleSelectMenu.bind(this, {_this: _this, isMenu: true, moduleIndex: modulesIndex,  menuIndex: menuIndex})}>
+                  <ListItemIcon>
+                    <Icon>more_vert</Icon>
+                  </ListItemIcon>
+                  <ListItemText inset primary={menu.name} />
+                </ListItem>
+              )
+            }
+          })
+        }
+        viewList.push(
+          <List subheader={<ListSubheader>{modules.name}</ListSubheader>} key={modulesIndex} className="sidebarMenu">
+            {viewMenuList}
+          </List>
+        )
+      })
+    }
+    return viewList
+  }
+
   render() {
     window.hahahaSidebar = this
+    const _store = this.props.sidebar
+    const viewMenuList = this.viewMenuList(_store, this)
     return (
-      <Drawer className="sidebar" type="persistent" open={true}>
+      <Drawer className="sidebar" type="persistent" open={_store.open}>
 				<div className="window vbox">
 					<div className="topbar">
-            <AppBar position="static" className="topbarMain">
+            <AppBar position="static" className="topbarMainSidebar">
               <Toolbar>
+                <IconButton color="contrast" aria-label="Menu">
+                  <Icon>menu_icon</Icon>
+                </IconButton>
                 <Typography type="title" color="inherit" className="topbarTitle">
                   <strong>LOCKBOARD</strong>
                 </Typography>
@@ -27,41 +109,7 @@ class Sidebar extends React.Component {
             </AppBar>
           </div>
 					<div className="content flex">
-            <List className="sidebarMenu">
-              <ListItem button className="menu">
-                <ListItemIcon>
-                  <Icon>more_vert</Icon>
-                </ListItemIcon>
-                <ListItemText inset primary="Menu" />
-              </ListItem>
-              <ListItem button className="menu">
-                <ListItemIcon>
-                  <Icon>more_vert</Icon>
-                </ListItemIcon>
-                <ListItemText inset primary="Another Menu" />
-              </ListItem>
-              <ListItem button className="menu active">
-                <ListItemIcon>
-                  <Icon>more_vert</Icon>
-                </ListItemIcon>
-                <ListItemText inset primary="Collapse Menu" />
-                {true ? <Icon><span class="material-icons">arrow_drop_down</span></Icon> : <Icon><span class="material-icons">keyboard_arrow_right</span></Icon>}
-              </ListItem>
-              <Collapse in={true} transitionDuration="auto" unmountOnExit>
-                <ListItem button className="submenu active">
-                  <ListItemIcon>
-                    <Icon>chevron_right</Icon>
-                  </ListItemIcon>
-                  <ListItemText inset primary="Child Menu" />
-                </ListItem>
-                <ListItem button className="submenu">
-                  <ListItemIcon>
-                    <Icon>chevron_right</Icon>
-                  </ListItemIcon>
-                  <ListItemText inset primary="Child Menu" />
-                </ListItem>
-              </Collapse>
-            </List>
+            {viewMenuList}
 					</div>
 				</div>
       </Drawer>
