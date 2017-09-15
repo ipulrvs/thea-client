@@ -1,0 +1,38 @@
+settings {
+	module_switch true
+}
+
+modules [
+	{
+		id
+		name
+		code
+		featured
+		description
+	}
+]
+
+menus [
+	{
+		id
+		name 
+		icon
+		description
+		-
+		modules_id
+	}
+]
+
+submenus [
+	{
+		id
+		name
+		icon
+		description
+		-
+		menus_id
+	}
+]
+
+module_switch = false home > findModules() -> List T sidebar = menu > submenus
+module_switch = true  home > findModulesOnlyOneFeatured() -> List T sidebar = menu > submenus
