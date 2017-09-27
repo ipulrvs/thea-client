@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     window.hahahaAPP = this
     return (
-      <div className="hbox">
+      <div className="hbox hboxfix">
         <Routes />
       </div>
     );

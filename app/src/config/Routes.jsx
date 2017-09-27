@@ -13,7 +13,7 @@ class Routes extends React.Component {
    render() {
       return (
         <Router>
-          <div className="hbox">
+          <div className="hbox hboxfix">
             <Route exact path="*" component={Sidebar} />
             <div className="main flex">
               <div className="window vbox">
