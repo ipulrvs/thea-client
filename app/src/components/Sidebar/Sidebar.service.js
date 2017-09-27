@@ -60,19 +60,6 @@ function SidebarReducer(state = {
 		case SidebarAction.select_menu:
 			console.log("Sidebar do: Select Menu")
 			let defaultState = state
-			defaultState.menus.map(function (module){
-				if(module.menus){
-					module.menus.map(function(menu){
-						menu.active = false
-						menu.openSub = false
-						if(menu.submenus){
-							menu.submenus.map(function (submenu){
-								submenu.active = false
-							})
-						}
-					})
-				}
-			})
 			let isMenu = action.param.isMenu
 			let module = action.param.moduleIndex
 			let menu = action.param.menuIndex
@@ -80,16 +67,33 @@ function SidebarReducer(state = {
 			let selectedMenu = defaultState.menus[module].menus[menu]
 			selectedMenu.active = true
 			if(selectedMenu.submenus && selectedMenu.submenus.length > 0){
-				selectedMenu.openSub = true
+				selectedMenu.openSub = !selectedMenu.openSub
 			}
 			if(!isMenu){
 				let selectedSubMenu = defaultState.menus[module].menus[menu].submenus[submenu]
 				selectedSubMenu.active = true
 			}
+			defaultState.menus.map(function (moduleDefault, moduleDefaultIndex){
+				if(moduleDefault.menus){
+					moduleDefault.menus.map(function(menuDefault, menuDefaultIndex){
+						menuDefault.active = false
+						if(menuDefaultIndex == menu && moduleDefaultIndex == module){
+						} else {
+							menuDefault.openSub = false
+						}
+						if(menuDefault.submenus){
+							menuDefault.submenus.map(function (submenu){
+								submenu.active = false
+							})
+						}
+					})
+				}
+			})
 			console.log(defaultState)
 			return {
 				...state,
-				defaultState
+				open: defaultState.open,
+				menus: defaultState.menus
 			}
 		default: 
 			return {
