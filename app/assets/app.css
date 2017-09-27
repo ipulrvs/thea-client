@@ -36,6 +36,21 @@ html, body {
 .window {
 	height: 100%;
 }
+
+/* Mobile */
+
+.mobileView {
+	display: none !important;
+}
+
+@media only screen and (min-width : 240px) and (max-width : 640px) {
+    .sidebar {
+    	display: none;
+		}
+		.mobileView {
+			display: block !important;
+		}
+}
 /* end Main Layout */
 
 /* begin Theme Material-UI */
@@ -57,8 +72,11 @@ html, body {
 }
 
 .topbarTitle {
-	flex: 1;
 	font-size: 16px !important;
+}
+
+.topbarSpace {
+	flex: 1;
 }
 
 .sidebar > div {
@@ -116,7 +134,7 @@ html, body {
 }
 
 .sidebarMenu .submenu .material-icons {
-	color: #F44336 !important;
+	color: #FAFAFA !important;
 }
 
 .sidebarMenu .submenu > div {
@@ -132,7 +150,7 @@ html, body {
 }
 
 .sidebarMenu .submenu:hover > .material-icons {
-	color: #FAFAFA !important;
+	color: #F44336 !important;
 }
 
 .sidebarMenu > .submenu.active {
@@ -144,7 +162,7 @@ html, body {
 }
 
 .sidebarMenu .submenu.active >.material-icons {
-	color: #FAFAFA !important;
+	color: #F44336 !important;
 }
 
 /* end Theme Material-UI */

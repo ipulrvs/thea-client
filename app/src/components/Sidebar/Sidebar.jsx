@@ -59,7 +59,7 @@ class Sidebar extends React.Component {
                     <Icon>more_vert</Icon>
                   </ListItemIcon>
                   <ListItemText inset primary={menu.name} />
-                  {menu.openSub ? <Icon>arrow_drop_down</Icon> : <Icon>keyboard_arrow_left</Icon>}
+                  {menu.openSub ? <Icon>expand_more</Icon> : <Icon>keyboard_arrow_left</Icon>}
                 </ListItem>,
                 <Collapse in={menu.openSub} transitionDuration="auto" unmountOnExit key={menuIndex+"_child"}>
                   {viewSubMenuList}

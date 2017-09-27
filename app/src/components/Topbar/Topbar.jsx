@@ -13,11 +13,14 @@ class Topbar extends React.Component {
       <div className="topbar">
 				<AppBar position="static" className="topbarMain">
           <Toolbar>
-            {/* <IconButton color="contrast" aria-label="Menu">
+            <IconButton color="contrast" aria-label="Menu" className="mobileView">
               <Icon>menu_icon</Icon>
-            </IconButton> */}
-            <Typography type="title" color="inherit" className="topbarTitle">
-              
+            </IconButton> 
+            <Typography type="title" color="inherit" className="mobileView topbarTitle">
+              <strong>LOCKBOARD</strong>
+            </Typography>
+            <Typography type="title" color="inherit" className="topbarSpace">
+
             </Typography>
             <IconButton color="contrast" aria-label="Menu">
               <Icon>settings_power</Icon>
