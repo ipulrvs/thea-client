@@ -76,14 +76,21 @@ function SidebarReducer(state = {
 			defaultState.menus.map(function (moduleDefault, moduleDefaultIndex){
 				if(moduleDefault.menus){
 					moduleDefault.menus.map(function(menuDefault, menuDefaultIndex){
-						menuDefault.active = false
 						if(menuDefaultIndex == menu && moduleDefaultIndex == module){
+							
 						} else {
 							menuDefault.openSub = false
+							menuDefault.active = false
 						}
 						if(menuDefault.submenus){
-							menuDefault.submenus.map(function (submenu){
-								submenu.active = false
+							menuDefault.submenus.map(function (submenuDefault, submenuDefaultIndex){
+								if(submenuDefaultIndex == submenu){
+									if(menuDefaultIndex == menu && moduleDefaultIndex == module){
+										menuDefault.openSub = true
+									}
+								} else {
+									submenuDefault.active = false
+								}
 							})
 						}
 					})
