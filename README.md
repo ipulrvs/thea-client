@@ -252,7 +252,10 @@ You can use `yarn add` instead `npm install` for package installer.
         import { Provider } from 'react-redux'
         import thunk from 'redux-thunk'
         import Reducers from './src/config/Reducers'
-        let store = createStore(Reducers, applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+        let store = createStore(Reducers, compose(
+          applyMiddleware(thunk),
+          window.devToolsExtension ? window.devToolsExtension() : f => f
+        ));
         /* end Redux Configuration */
         
         ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('app'));
