@@ -7,6 +7,7 @@ Ready Client Stack for Fast Development built by React and Material UI
 - Basic knowledge React
 - Basic knowledge React Router
 - Basic knowledge Redux
+- Basic knowledge Redux Thunk
 
 ## Getting Started
 
