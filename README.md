@@ -249,7 +249,7 @@ You can use `yarn add` instead `npm install` for package installer.
         import App from './src/App.jsx';
         
         /* begin Redux Configuration */
-        import { createStore, applyMiddleware } from 'redux'
+        import { createStore, applyMiddleware, compose } from 'redux'
         import { Provider } from 'react-redux'
         import thunk from 'redux-thunk'
         import Reducers from './src/config/Reducers'
