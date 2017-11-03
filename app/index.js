@@ -4,11 +4,14 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 import App from './src/App.jsx'
 
 /* begin Redux Configuration */
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import Reducers from './src/config/Reducers'
-let store = createStore(Reducers, applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+let store = createStore(Reducers, compose(
+  applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+));
 /* end Redux Configuration */
 
 /* load Theme Configuration */

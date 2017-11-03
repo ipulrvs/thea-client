@@ -4,46 +4,31 @@ function SidebarReducer(state = {
 	open: true,
 	menus: [
 		{
-			name: 'Config',
+			name: 'Dashboard',
 			menus: [
 				{
-					name: 'Board',
+					url: '/',
+					name: 'Home',
 					active: false,
 					openSub: false
-				},
-				{
-					name: 'Applicant',
-					active: false,
-					openSub: false,
-					submenus: [
-						{
-							name: 'JBoard'
-						},
-						{
-							name: 'Profile'
-						}
-					]
 				}
 			]
 		},
 		{
-			name: 'Portal',
+			name: 'Component',
 			menus: [
 				{
-					name: 'Jboard',
-					active: false,
-					openSub: false
-				},
-				{
-					name: 'Reviewer',
+					name: 'List',
 					active: false,
 					openSub: false,
 					submenus: [
 						{
-							name: 'Candidate'
+							url: '/ux/table',
+							name: 'Table'
 						},
 						{
-							name: 'Approval'
+							url: '/ux/Todos/add',
+							name: 'Form'
 						}
 					]
 				}

@@ -17,13 +17,13 @@ class Topbar extends React.Component {
               <Icon>menu_icon</Icon>
             </IconButton> 
             <Typography type="title" color="inherit" className="mobileView topbarTitle">
-              <strong>LOCKBOARD</strong>
+              <strong>Thea Frontend</strong>
             </Typography>
             <Typography type="title" color="inherit" className="topbarSpace">
 
             </Typography>
             <IconButton color="contrast" aria-label="Menu">
-              <Icon>settings_power</Icon>
+              <Icon>exit_to_app</Icon>
             </IconButton>
           </Toolbar>
         </AppBar>

@@ -25,6 +25,7 @@ class Sidebar extends React.Component {
   handleSelectMenu(param){
     const _this = param._this
     _this.props.dispatch({type: SidebarAction.select_menu, param: param})
+    _this.props.history.push(param.url)
   }
 
   viewMenuList(store, _this){
@@ -42,7 +43,7 @@ class Sidebar extends React.Component {
               submenus.map(function(submenu, submenuIndex){
                 viewSubMenuList.push(
                   <ListItem button className={submenu.active ? "submenu active" : "submenu"} key={submenuIndex} 
-                  onClick={_this.handleSelectMenu.bind(this, {_this: _this, isMenu: false, moduleIndex: modulesIndex, menuIndex: menuIndex, submenuIndex: submenuIndex})}>
+                  onClick={_this.handleSelectMenu.bind(this, {_this: _this, url: submenu.url, isMenu: false, moduleIndex: modulesIndex, menuIndex: menuIndex, submenuIndex: submenuIndex})}>
                     <ListItemIcon>
                       <Icon>chevron_right</Icon>
                     </ListItemIcon>
@@ -54,7 +55,7 @@ class Sidebar extends React.Component {
             if(submenus && submenus.length > 0){
               viewMenuList.push(
                 <ListItem button className={menu.active ? "menu active" : "menu"} key={menuIndex} 
-                onClick={_this.handleSelectMenu.bind(this, {_this: _this, isMenu: true, moduleIndex: modulesIndex, menuIndex: menuIndex})}>
+                onClick={_this.handleSelectMenu.bind(this, {_this: _this, url: menu.url, isMenu: true, moduleIndex: modulesIndex, menuIndex: menuIndex})}>
                   <ListItemIcon>
                     <Icon>more_vert</Icon>
                   </ListItemIcon>
@@ -69,7 +70,7 @@ class Sidebar extends React.Component {
             if(!submenus) {
               viewMenuList.push(
                 <ListItem button className={menu.active ? "menu active" : "menu"} key={menuIndex} 
-                onClick={_this.handleSelectMenu.bind(this, {_this: _this, isMenu: true, moduleIndex: modulesIndex,  menuIndex: menuIndex})}>
+                onClick={_this.handleSelectMenu.bind(this, {_this: _this, url: menu.url, isMenu: true, moduleIndex: modulesIndex,  menuIndex: menuIndex})}>
                   <ListItemIcon>
                     <Icon>more_vert</Icon>
                   </ListItemIcon>
@@ -103,7 +104,7 @@ class Sidebar extends React.Component {
                   <Icon>menu_icon</Icon>
                 </IconButton>
                 <Typography type="title" color="inherit" className="topbarTitle">
-                  <strong>LOCKBOARD</strong>
+                  <strong>Thea Frontend</strong>
                 </Typography>
               </Toolbar>
             </AppBar>
