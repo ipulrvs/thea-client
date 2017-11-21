@@ -20,15 +20,14 @@ import Table, {
 import Paper from 'material-ui/Paper';
 import Icon from 'material-ui/Icon';
 
-import connect from 'redux-connect-decorator'
-@connect(store => ({ 
-  global: store.global,
-  entity: store.entity
-}))
 export default class UXTable extends React.Component {
-  service = ServiceExtend
+  constructor(props){
+    super(props)
+    this.service = ServiceExtend
+  }
 
   componentDidMount(){
+    console.log(this.service, this.props.entity, "USED SERVICE")
     this.props.dispatch(this.service.query())
     this.props.dispatch(this.service.count())
   }

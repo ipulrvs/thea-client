@@ -23,7 +23,7 @@ function SidebarReducer(state = {
 					openSub: false,
 					submenus: [
 						{
-							url: '/ux/table',
+							url: '/ux/tableExtend',
 							name: 'Table'
 						},
 						{

@@ -11,7 +11,6 @@ import IconButton from 'material-ui/IconButton';
 import Paper from 'material-ui/Paper';
 import Icon from 'material-ui/Icon';
 
-
 import connect from 'redux-connect-decorator'
 @connect(store => ({ 
   global: store.global,
