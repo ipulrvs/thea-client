@@ -55,11 +55,12 @@ export class Service {
 	// -- end reducer;
 
 	// -- begin Query;
-	query(params){
+	query(params, page){
 		const _this = this
 		return function (dispatch){
 			let paramsDefault = {
 				filter: {
+					skip : _this.defaultPage.limit * page,
 					limit: _this.defaultPage.limit
 				}
 			}
@@ -73,6 +74,19 @@ export class Service {
 				dispatch({ type: `${_this.name}_INIT`, param: data })
 			})
 		}
+	}
+
+	delete(id, component){
+		const _this = this
+		axios.delete(`${Request.baseUrl}/api/${_this.name}/${id}`).then(function (res){ 
+			swal({
+				title: "Delete",
+				text : "Data has been deleted",
+				type : "info"
+			})
+			console.log(component)
+			component.props.dispatch(component.service.query(null, component.props.entity.page))
+		})
 	}
 
 	count(params){

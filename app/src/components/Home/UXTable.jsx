@@ -36,12 +36,7 @@ export default class UXTable extends React.Component {
     const page = number
     const rowsPerPage = this.props.entity.limit
     this.props.dispatch({type: `${this.service.name}_PAGE`, param: number})
-    this.props.dispatch(this.service.query({
-			filter: {
-				skip: page * rowsPerPage,
-				limit: rowsPerPage
-			}
-		}))
+    this.props.dispatch(this.service.query(null, page))
   }
 
   handleChangeRowsPerPage(a,b,c){
@@ -51,6 +46,21 @@ export default class UXTable extends React.Component {
 
   handleMainButton(){
     this.props.history.push(`${this.service.name}/add`)
+  }
+
+  handleDelete(id){
+    const _this = this
+    swal({
+      title: "Delete",
+      text: "Are you sure you want to delete this item ?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+    }).then(function(confirm){
+      if(confirm.value){
+        _this.service.delete(id, _this)
+      }
+    })
   }
 
   render() {
@@ -66,6 +76,9 @@ export default class UXTable extends React.Component {
         <TableCell key={i}>{column.alias}</TableCell>
       )
     })
+    TableHeaders.push(
+      <TableCell key="action" style={{width: "100px", textAlign: "center"}}>#</TableCell>
+    )
 
     const TableDatas = []
     this.props.entity.datas.map(function (data, i){
@@ -77,6 +90,16 @@ export default class UXTable extends React.Component {
           <TableCell key={i2}>{data[column.name]}</TableCell>
         )
       })
+      TableRows.push(
+        <TableCell key={"action" + i}>
+          <IconButton>
+            <Icon>visibility</Icon>
+          </IconButton> 
+         <IconButton onClick={_this.handleDelete.bind(_this, data.id)}>
+            <Icon>delete</Icon>
+          </IconButton> 
+        </TableCell>
+      )
       TableDatas.push(
         <TableRow key={i}>{TableRows}</TableRow>   
       )
@@ -120,7 +143,14 @@ export default class UXTable extends React.Component {
               <TableHead>
                 <TableRow>{TableHeaders}</TableRow>
               </TableHead>
-              <TableBody>{TableDatas}</TableBody>
+              <TableBody>
+                {TableDatas}
+                {TableDatas.length == 0 &&
+                  <tr>
+                    <td colSpan={TableHeaders.length} style={{textAlign: "center", padding: 25}}>No Data to Display</td>
+                  </tr> 
+                }
+              </TableBody>
               {this.props.entity.datas.length >= 10 &&
               <TableHead>
                 <TableRow>{TableHeaders}</TableRow>
