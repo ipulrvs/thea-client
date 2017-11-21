@@ -37,6 +37,12 @@ export default class UXTable extends React.Component {
     const page = number
     const rowsPerPage = this.props.entity.limit
     this.props.dispatch({type: `${this.service.name}_PAGE`, param: number})
+    this.props.dispatch(this.service.query({
+			filter: {
+				skip: page * rowsPerPage,
+				limit: rowsPerPage
+			}
+		}))
   }
 
   handleChangeRowsPerPage(a,b,c){
