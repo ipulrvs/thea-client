@@ -25,6 +25,7 @@ class Routes extends React.Component {
                 <Route exact path="/ux/table" component={UXTable} />
                 <Route exact path="/ux/tableExtend" component={UXTableExtend} />
                 <Route exact path="/ux/Todos/add" component={UXForm} />
+                <Route exact path="/ux/Todos/view/:id" component={UXForm} />
               </div>
             </div>
           </div>

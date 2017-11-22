@@ -27,7 +27,8 @@ export class Service {
 			datas: [],
 			count: 0,
 			page: 0,
-			limit: _this.defaultPage.limit
+			limit: _this.defaultPage.limit,
+			formData: {}
 		}, action){
 			switch(action.type){
 				case `${_this.name}_INIT`:
@@ -44,6 +45,11 @@ export class Service {
 					return {
 						...state,
 						page: action.param
+					}
+				case `${_this.name}_FORMDATA`:
+					return {
+						...state,
+						formData: action.param
 					}
 				default: 
 					return {
@@ -76,6 +82,32 @@ export class Service {
 		}
 	}
 
+	create(formData, component){
+		const _this = this
+		axios.post(`${Request.baseUrl}/api/${_this.name}`, formData).then(function (res){ 
+			swal({
+				type : "Add",
+				title: "Data successfully added",
+				type : "success",
+				confirmButtonText: "Done",
+				timer: 1500
+			})
+			setTimeout(function() {
+				component.props.history.goBack();
+			}, 1500);
+		})
+	}
+
+	get(id){
+		const _this = this
+		return function (dispatch){
+			axios.get(`${Request.baseUrl}/api/${_this.name}/${id}`).then(function (res){ 
+				const data = res.data
+				dispatch({ type: `${_this.name}_FORMDATA`, param: data })
+			})
+		}
+	}
+
 	delete(id, component){
 		const _this = this
 		axios.delete(`${Request.baseUrl}/api/${_this.name}/${id}`).then(function (res){ 
@@ -84,7 +116,6 @@ export class Service {
 				text : "Data has been deleted",
 				type : "info"
 			})
-			console.log(component)
 			component.props.dispatch(component.service.query(null, component.props.entity.page))
 		})
 	}

@@ -48,6 +48,10 @@ export default class UXTable extends React.Component {
     this.props.history.push(`${this.service.name}/add`)
   }
 
+  handleView(id){
+    this.props.history.push(`${this.service.name}/view/${id}`, {id: id})
+  }
+
   handleDelete(id){
     const _this = this
     swal({
@@ -65,7 +69,6 @@ export default class UXTable extends React.Component {
 
   render() {
     window.hahahaService = this
-
     const _this = this
 
     const TableHeaders = [
@@ -92,7 +95,7 @@ export default class UXTable extends React.Component {
       })
       TableRows.push(
         <TableCell key={"action" + i}>
-          <IconButton>
+          <IconButton onClick={_this.handleView.bind(_this, data.id)}>
             <Icon>visibility</Icon>
           </IconButton> 
          <IconButton onClick={_this.handleDelete.bind(_this, data.id)}>

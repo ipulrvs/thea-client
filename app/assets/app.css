@@ -45,6 +45,15 @@ html, body {
 	overflow: auto;
 }
 
+.contentForm {
+	padding-left: 36px;
+	padding-right: 36px;
+	padding-top: 24px;
+	padding-bottom: 72px;
+	width: 93%;
+	margin: 0 auto;
+}
+
 .window {
 	height: 100%;
 }

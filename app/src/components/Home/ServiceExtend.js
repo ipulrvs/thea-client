@@ -7,17 +7,39 @@ export class ServiceExtend extends Service {
 		{
 			name: "id",
 			alias: "ID",
-			show: false
+			show: false,
+			form: {
+				skipL     : 0,
+				skipR     : 6,
+				width     : 6,
+				type 		  : "number",
+				disabled  : true
+			}
 		},
 		{
 			name: "name",
 			alias: "Name",
-			show: false
+			show: false,
+			form: {
+				skipL     : 0,
+				skipR     : 0,
+				width     : 12,
+				type 		  : "text",
+				disabled  : false,
+				validation: "required"
+			}
 		},
 		{
 			name: "description",
 			alias: "Description",
-			show: false
+			show: false,
+			form: {
+				skipL     : 0,
+				skipR     : 0,
+				width     : 12,
+				type 		  : "textarea",
+				disabled  : false
+			}
 		}
 	]
 	defaultPage = {
