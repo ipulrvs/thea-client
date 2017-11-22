@@ -18,22 +18,23 @@ import connect from 'redux-connect-decorator'
   entity: store.entity
 }))
 export default class UXForm extends React.Component {
-  service = ServiceExtend
-  formSet = "" //Add //Edit //View
-
   constructor(props){
     super(props)
-
+    this.service = ServiceExtend
     this.state = {
       formData: {},
-      formValidation: {}
+      formValidation: {},
+      formSet: "Add"
     }
   }
 
   componentDidMount(){
     var id = this.props.match.params.id
     if(id){
+      this.setState({ formSet: "View" })
       this.props.dispatch(this.service.get(id))
+    } else {
+      this.setState({ formSet: "Add" })
     }
   }
 
@@ -75,18 +76,30 @@ export default class UXForm extends React.Component {
     return formValidation
   }
 
-  handleSave(){
+  handleSave(trigger){
     var valid  = this.handleValidation()
     var valids = Object.keys(valid)
     if(valids.length == 0){
       var formData = this.state.formData
-      this.service.create(formData, this)
+      if(trigger == "Edit"){
+        this.service.update(formData, this)
+      } else {
+        this.service.create(formData, this)
+      } 
     } else {
       swal({
         title: "",
         text : "Please fill requirement fields to complete form",
         type : "info"
       })
+    }
+  }
+  
+  handleEdit(trigger){
+    if(trigger){
+      this.setState({ formSet: "Edit" })
+    } else {
+      this.setState({ formSet: "View" })
     }
   }
 
@@ -99,6 +112,18 @@ export default class UXForm extends React.Component {
     var formFields = []
     this.service.columns.map(function(item, index){
       var inputField = item.form
+      var inputFieldDisable = false
+      if(_this.state.formSet == "View"){
+        inputFieldDisable = true
+      } 
+      if(_this.state.formSet == "Edit" && !inputField.disabled){ 
+        inputFieldDisable = false
+      } else {
+        inputFieldDisable = true
+      }
+      if(_this.state.formSet == "Add"){ 
+        inputFieldDisable = inputField.disabled
+      }
       console.log(inputField, item)
       var error = false
       if(_this.state.formValidation[item.name]){
@@ -107,7 +132,6 @@ export default class UXForm extends React.Component {
       if(item.skipL > 0){
         formFields.push(<div className={"col-"+inputField.skipL}></div>)
       }
-
       if(inputField.type == "text"){
         formFields.push(
           <div className={"col-"+inputField.width} key={index}>
@@ -117,7 +141,7 @@ export default class UXForm extends React.Component {
               label={item.alias}
               margin="normal"
               fullWidth={true}
-              disabled={inputField.disabled}
+              disabled={inputFieldDisable}
               value={_this.state.formData[item.name]}
               onChange={_this.handleInput.bind(_this, item.name)}
               helperText={_this.state.formValidation[item.name]}
@@ -134,7 +158,7 @@ export default class UXForm extends React.Component {
               label={item.alias}
               margin="normal"
               fullWidth={true}
-              disabled={inputField.disabled}
+              disabled={inputFieldDisable}
               value={_this.state.formData[item.name]}
               onChange={_this.handleInput.bind(_this, item.name)}
               helperText={_this.state.formValidation[item.name]}
@@ -153,7 +177,7 @@ export default class UXForm extends React.Component {
               multiline
               rows="4"
               fullWidth={true}
-              disabled={inputField.disabled}
+              disabled={inputFieldDisable}
               value={_this.state.formData[item.name]}
               onChange={_this.handleInput.bind(_this, item.name)}
             />
@@ -170,16 +194,43 @@ export default class UXForm extends React.Component {
         <AppBar position="static" className="toolbar">
           <Toolbar>
             <Typography type="title" className="toolbarTitle" >
-              {this.service.alias + " " + this.formSet + " Form"}
+              {this.service.alias + " " + this.state.formSet + " Form"}
             </Typography>
           </Toolbar>
         </AppBar>
         <div className="content flex">
-          <div className="actionButton">
-            <Button fab color="primary" onClick={this.handleSave.bind(this)}>
-              <Icon>save</Icon>
-            </Button>
-          </div>
+          {
+            this.state.formSet == "Add" &&
+            <div className="actionButton">
+              <Button fab color="primary" onClick={this.handleSave.bind(this)}>
+                <Icon>save</Icon>
+              </Button>
+            </div>
+          }
+          {
+            this.state.formSet == "Edit" &&
+            <div className="actionButton2">
+              <Button fab color="primary" onClick={this.handleEdit.bind(this, false)}>
+                <Icon>close</Icon>
+              </Button>
+            </div>
+          }
+          {
+            this.state.formSet == "Edit" &&
+            <div className="actionButton">
+              <Button fab color="primary" onClick={this.handleSave.bind(this, "Edit")}>
+                <Icon>save</Icon>
+              </Button>
+            </div>
+          }
+          {
+            this.state.formSet == "View" &&
+            <div className="actionButton">
+              <Button fab color="primary" onClick={this.handleEdit.bind(this, true)}>
+                <Icon>edit</Icon>
+              </Button>
+            </div>
+          }
           <Paper className="contentForm">
             <div className="row">
               {formFields}

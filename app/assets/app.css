@@ -219,6 +219,13 @@ html, body {
 	z-index: 2000;
 }
 
+.actionButton2 {
+	position: absolute;
+	bottom: 110px;
+	right: 25px;
+	z-index: 2000;
+}
+
 .quickbar {
 	
 }

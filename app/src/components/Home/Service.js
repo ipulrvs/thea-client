@@ -98,6 +98,19 @@ export class Service {
 		})
 	}
 
+	update(formData, component){
+		const _this = this
+		axios.put(`${Request.baseUrl}/api/${_this.name}/${formData.id}`, formData).then(function (res){ 
+			swal({
+				type : "Edit",
+				title: "Data successfully edited",
+				type : "success",
+				confirmButtonText: "Done",
+				timer: 1500
+			})
+		})
+	}
+
 	get(id){
 		const _this = this
 		return function (dispatch){
