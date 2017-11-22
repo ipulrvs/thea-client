@@ -7,7 +7,10 @@ import ServiceExtend from './../components/Home/ServiceExtend'
 const Reducers = combineReducers({
 	global: GlobalReducer,
 	sidebar: SidebarReducer,
-	entity: ServiceExtend.reducer()
+	entity: ServiceExtend.reducer(),
+	// Begin custom Store
+
+	// End   custom Store
 })
 
 export default Reducers

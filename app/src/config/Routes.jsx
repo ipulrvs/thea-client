@@ -11,6 +11,7 @@ import Home from './../components/Home/Home.jsx'
 import UXTable from './../components/Home/UXTable.jsx'
 import UXTableExtend from './../components/Home/UXTableExtend.jsx'
 import UXForm from './../components/Home/UXForm.jsx'
+import UXFormExtend from './../components/Home/UXFormExtend.jsx'
 
 class Routes extends React.Component {
    render() {
@@ -24,8 +25,11 @@ class Routes extends React.Component {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/ux/table" component={UXTable} />
                 <Route exact path="/ux/tableExtend" component={UXTableExtend} />
-                <Route exact path="/ux/Todos/add" component={UXForm} />
-                <Route exact path="/ux/Todos/view/:id" component={UXForm} />
+                <Route exact path="/ux/Todos/add" component={UXFormExtend} />
+                <Route exact path="/ux/Todos/view/:id" component={UXFormExtend} />
+                {/* Begin custom Routers */}
+                
+                {/* End   custom Routers */}
               </div>
             </div>
           </div>

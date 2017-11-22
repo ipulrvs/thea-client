@@ -12,11 +12,6 @@ import Paper from 'material-ui/Paper';
 import Icon from 'material-ui/Icon';
 import TextField from 'material-ui/TextField';
 
-import connect from 'redux-connect-decorator'
-@connect(store => ({ 
-  global: store.global,
-  entity: store.entity
-}))
 export default class UXForm extends React.Component {
   constructor(props){
     super(props)
