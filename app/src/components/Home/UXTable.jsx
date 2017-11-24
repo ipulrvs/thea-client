@@ -45,11 +45,11 @@ export default class UXTable extends React.Component {
   }
 
   handleMainButton(){
-    this.props.history.push(`${this.service.name}/add`)
+    this.props.history.push(`${this.service.url}/add`)
   }
 
   handleView(id){
-    this.props.history.push(`${this.service.name}/view/${id}`, {id: id})
+    this.props.history.push(`${this.service.url}/view/${id}`, {id: id})
   }
 
   handleDelete(id){
@@ -89,9 +89,25 @@ export default class UXTable extends React.Component {
         <TableCell key="index">{i + 1 + (_this.props.entity.limit * _this.props.entity.page)}</TableCell>
       ]
       _this.service.columns.map(function (column, i2){
-        TableRows.push(
-          <TableCell key={i2}>{data[column.name]}</TableCell>
-        )
+        if(column.relation){
+          try {
+            TableRows.push(
+              <TableCell key={i2}>{data[column.name][column.relationName]}</TableCell>
+            )
+          } catch (e){
+            TableRows.push(
+              <TableCell key={i2}></TableCell>
+            )
+          }
+        } else {
+          try {
+             TableRows.push(
+              <TableCell key={i2}>{data[column.name]}</TableCell>
+            )
+          } catch(e){
+            <TableCell key={i2}></TableCell>
+          }
+        }
       })
       TableRows.push(
         <TableCell key={"action" + i}>

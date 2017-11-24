@@ -11,6 +11,10 @@ import IconButton from 'material-ui/IconButton';
 import Paper from 'material-ui/Paper';
 import Icon from 'material-ui/Icon';
 import TextField from 'material-ui/TextField';
+import Select from 'material-ui/Select';
+import Input, { InputLabel } from 'material-ui/Input';
+import { MenuItem } from 'material-ui/Menu';
+import { FormControl, FormHelperText } from 'material-ui/Form';
 
 export default class UXForm extends React.Component {
   constructor(props){
@@ -23,7 +27,7 @@ export default class UXForm extends React.Component {
     }
   }
 
-  componentDidMount(){
+  handleEditableView(){
     var id = this.props.match.params.id
     if(id){
       this.setState({ formSet: "View" })
@@ -33,6 +37,10 @@ export default class UXForm extends React.Component {
     }
   }
 
+  componentDidMount(){
+    this.handleEditableView()
+  }
+
   componentWillReceiveProps(nextProps){
     if(this.props.entity.formData != nextProps.entity.formData){
       this.setState({formData: nextProps.entity.formData})
@@ -40,6 +48,8 @@ export default class UXForm extends React.Component {
   }
 
   handleInput(field, evt){
+    console.log(field, evt)
+    window.haahahahahah = evt
     console.log(field, evt.target.value)
     var formData = this.state.formData
     formData[field] = evt.target.value
@@ -58,7 +68,10 @@ export default class UXForm extends React.Component {
           if(formData[item.name]){
             checkValue = formData[item.name]
           }
-          console.log(checkValue)
+          if(item.relation){
+            checkValue = formData[item.relationKey]
+          }
+          console.log(checkValue, "CHECK VALUE")
           if(checkValue == "" || checkValue == null || checkValue == undefined){
             formValidation[item.name] = "This field is required"
           } else {
@@ -69,6 +82,10 @@ export default class UXForm extends React.Component {
     })
     this.setState({formValidation: formValidation})
     return formValidation
+  }
+
+  handleBack(){
+    this.props.history.goBack()
   }
 
   handleSave(trigger){
@@ -175,7 +192,39 @@ export default class UXForm extends React.Component {
               disabled={inputFieldDisable}
               value={_this.state.formData[item.name]}
               onChange={_this.handleInput.bind(_this, item.name)}
+              helperText={_this.state.formValidation[item.name]}
             />
+          </div>
+        )
+      }
+      if(inputField.type == "select"){
+        var options = item.form.options;
+        if(item.form.remote){
+          options = _this.props.entity[item.name]
+        }
+        console.log(options)
+        var optionsView = [];
+        options.map(function(option, index){
+          optionsView.push(
+            <MenuItem key={index} value={option.value}>{option.label}</MenuItem>
+          )
+        });
+        formFields.push(
+          <div className={"col-"+inputField.width+" selectInput"} key={index}>
+            <InputLabel>{item.alias}</InputLabel>
+            <Select
+              error={error}
+              id={item.name}
+              fullWidth={true}
+              disabled={inputFieldDisable}
+              native={false}
+              value={_this.state.formData[item.relationKey]}
+              onChange={_this.handleInput.bind(_this, item.relationKey)}
+              input={<Input />}
+            >
+              {optionsView}
+          </Select>
+          <FormHelperText style={{color: "#FF1744"}}>{_this.state.formValidation[item.name]}</FormHelperText>
           </div>
         )
       }
@@ -191,6 +240,12 @@ export default class UXForm extends React.Component {
             <Typography type="title" className="toolbarTitle" >
               {this.service.alias + " " + this.state.formSet + " Form"}
             </Typography>
+            <Typography type="title" color="inherit" className="topbarSpace">
+            </Typography>
+            <Button onClick={this.handleBack.bind(this)}>
+              <Icon>arrow_back</Icon>
+              Back
+            </Button>
           </Toolbar>
         </AppBar>
         <div className="content flex">

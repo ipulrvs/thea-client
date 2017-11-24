@@ -3,6 +3,7 @@ import { Service } from './Service'
 export class ServiceExtend extends Service {
 	name 		= "Todos"
 	alias 	= "Todo"
+	url     = "todo"
 	columns = [
 		{
 			name: "id",
@@ -41,6 +42,25 @@ export class ServiceExtend extends Service {
 				disabled  : false
 			}
 		}
+		// select field example
+		// {
+		// 	relation: true,
+		// 	relationKey : "propinsiId",
+		// 	relationName: "nama",
+		// 	name: "propinsi",
+		// 	alias: "Propinsi",
+		// 	show: false,
+		// 	form: {
+		// 		skipL     : 0,
+		// 		skipR     : 0,
+		// 		width     : 12,
+		// 		type 		  : "select",
+		// 		options   : [{value: null, label: "Empty"}],
+		//    remote    : true,
+		// 		disabled  : false,
+		// 		validation: "required"
+		// 	}
+		// }
 	]
 	defaultPage = {
 		limit: 25,
